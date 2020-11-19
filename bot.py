@@ -107,7 +107,7 @@ balances = {}
 
 logging.basicConfig(level=logging.DEBUG)
 
-API_TOKEN = '1200511728:AAGCXZwq6QyiJhrvarPKBR2R9UZHC6v7hhU'
+API_TOKEN = ''
 
 
 bot = Bot(token=API_TOKEN)
