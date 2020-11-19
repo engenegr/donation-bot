@@ -107,7 +107,7 @@ balances = {}
 
 logging.basicConfig(level=logging.DEBUG)
 
-API_TOKEN = ''
+API_TOKEN = '1200511728:AAGCXZwq6QyiJhrvarPKBR2R9UZHC6v7hhU'
 
 
 bot = Bot(token=API_TOKEN)
@@ -207,10 +207,11 @@ async def process_result(message: types.Message, state: FSMContext):
     qr.png(stream, scale=3)
     await bot.send_photo(message.chat.id, stream.getvalue(), caption=f"bitcoin:{address}")
     await bot.send_message(message.chat.id, "Нажмите Отмена, если хотите отказаться", reply_markup=markup)
-    await sent_indexes.put({'id': message.chat.id,
-                            'idx': idx,
-                            'address': address,
-                            'ts': datetime.now().timestamp()})
+    awaitable = {'id': message.chat.id,
+                 'idx': idx,
+                 'address': address,
+                 'ts': datetime.now().timestamp()}
+    await sent_indexes.put(awaitable)
     logging.debug(f"awaitables updated with {idx}")
     return await state.set_state(Form.result)
 
